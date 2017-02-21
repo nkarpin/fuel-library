@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -ex
-set -o pipefail
+#set -o pipefail
 
 
 # setup logging
