@@ -40,6 +40,7 @@ for task in $TASKS; do
 DEPLOYMENT TASK: $task
 ##################################
 EOF
+
     if [[ "${task}" == "keystone_token_disable" ]]; then
         sleep 15
         puppet apply -d -v --color false --detailed-exitcodes \
