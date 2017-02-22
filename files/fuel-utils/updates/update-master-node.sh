@@ -25,7 +25,7 @@ systemctl daemon-reload
 
 echo '<STAGE>: Puppet...'
 # re-apply puppet master node configuration
-/etc/puppet/modules/fuel/examples/deploy.sh
+/etc/puppet/modules/fuel/examples/deploy2.sh
 
 
 echo '<STAGE>: Services...'

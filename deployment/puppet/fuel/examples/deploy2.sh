@@ -13,6 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+
 TASKS="
 hiera
 host
@@ -38,15 +39,8 @@ for task in $TASKS; do
 DEPLOYMENT TASK: $task
 ##################################
 EOF
-
-    if [[ "${task}" == "keystone_token_disable" ]]; then
-        sleep 15
-        puppet apply -d -v --color false --detailed-exitcodes \
+    puppet apply -d -v --color false --detailed-exitcodes --logdest syslog \
         "/etc/puppet/modules/fuel/examples/${task}.pp"
-    else
-       puppet apply -d -v --color false --detailed-exitcodes \
-        "/etc/puppet/modules/fuel/examples/${task}.pp"
-    fi
     PUPPET_RUN=$?
     if [[ $PUPPET_RUN -eq 1 ]] || [[ $PUPPET_RUN -gt 2 ]]; then
         echo "The were failures while running task: ${task} with exit code: ${PUPPET_RUN}"
