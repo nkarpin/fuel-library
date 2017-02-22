@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -x
-#set -o pipefail
+set -ex
+set -o pipefail
 
 
 # setup logging
@@ -25,7 +25,7 @@ systemctl daemon-reload
 
 echo '<STAGE>: Puppet...'
 # re-apply puppet master node configuration
-/etc/puppet/modules/fuel/examples/deploy2.sh
+bash -x /etc/puppet/modules/fuel/examples/deploy2.sh
 
 
 echo '<STAGE>: Services...'
