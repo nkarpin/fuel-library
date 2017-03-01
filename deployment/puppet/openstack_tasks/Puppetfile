@@ -58,8 +58,8 @@ mod 'ironic',
 
 # Pull in puppet-keystone
 mod 'keystone',
-    :git => 'https://github.com/fuel-infra/puppet-keystone.git',
-    :ref => 'master'
+    :git => 'https://github.com/nkarpin/puppet-keystone.git',
+    :ref => 'versionless_endpoint'
 
 # Pull in puppet-openstacklib
 mod 'openstacklib',
