@@ -38,13 +38,13 @@ mod 'cinder',
 
 # Pull in puppet-glance
 mod 'glance',
-    :git => 'https://github.com/fuel-infra/puppet-glance.git',
-    :ref => 'master'
+    :git => 'https://github.com/nkarpin/puppet-glance.git',
+    :ref => 'drop_glare'
 
 # Pull in puppet-glare
 mod 'glare',
-    :git => 'https://github.com/fuel-infra/puppet-glare.git',
-    :ref => 'master'
+    :git => 'https://github.com/nkarpin/puppet-glare.git',
+    :ref => 'backend_fix'
 
 # Pull in puppet-heat
 mod 'heat',
