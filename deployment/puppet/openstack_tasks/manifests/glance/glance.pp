@@ -101,8 +101,8 @@ class openstack_tasks::glance::glance {
     tweaks::ubuntu_service_override { 'glance-api':
       package_name => 'glance-api',
     }
-    tweaks::ubuntu_service_override { 'glare':
-      package_name => 'glare',
+    tweaks::ubuntu_service_override { 'glare-api':
+      package_name => 'glare-api',
     }
     tweaks::ubuntu_service_override { 'glance-registry':
       package_name => 'glance-registry',
@@ -147,11 +147,11 @@ class openstack_tasks::glance::glance {
   }
 
   class { '::glare::logging':
-    use_syslog         => $use_syslog,
-    use_stderr         => $use_stderr,
-    log_facility       => $syslog_log_facility,
-    debug              => $debug,
-    default_log_levels => hiera('default_log_levels'),
+    use_syslog          => $use_syslog,
+    use_stderr          => $use_stderr,
+    syslog_log_facility => $syslog_log_facility,
+    debug               => $debug,
+    default_log_levels  => hiera('default_log_levels'),
   }
 
   class { '::glare::db':
@@ -162,7 +162,7 @@ class openstack_tasks::glance::glance {
     database_max_overflow  => $max_overflow,
   }
 
-  class { '::glare::authtoken':
+  class { '::glare::keystone::authtoken':
     username          => $glance_glare_user,
     password          => $glance_glare_user_password,
     project_name      => $glance_glare_tenant,
@@ -173,6 +173,7 @@ class openstack_tasks::glance::glance {
   }
 
   class { '::glare':
+    package_ensure    => 'present'
     bind_host         => $glare_bind_host,
     auth_strategy     => 'keystone',
     enabled           => $enabled,
@@ -181,6 +182,7 @@ class openstack_tasks::glance::glance {
     pipeline          => $pipeline,
     os_region_name    => $region,
   }
+
 
   glance_api_config {
     'DEFAULT/scrubber_datadir': value => '/var/lib/glance/scrubber';
